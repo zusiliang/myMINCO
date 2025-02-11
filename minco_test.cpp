@@ -36,12 +36,12 @@ int main()
     // get the energy partial derivatives by the coefficients
     cout << "Uniform MINCO energy partial derivatives: " << endl << minco_uniform.getEnergyPartialGradByCoeffs() << endl;
     // get the energy partial derivatives by dT
-    cout << "Uniform MINCO energy partial derivatives by dT: " << endl << minco_uniform.getEnergyPartialGradBydT() << endl;
+    cout << "Uniform MINCO energy partial derivatives by dT: " << minco_uniform.getEnergyPartialGradBydT() << endl;
     // construct the trajectory
     PolynominalTrajectory<3> uniform_trajectory(minco_uniform.getCoeffs(), Eigen::Vector3d(2, 2, 2));
     // get the position and velocity at time 2.5
-    cout << "Uniform MINCO position at time 2.5: " << uniform_trajectory.at(2.5, 0) << endl;
-    cout << "Uniform MINCO velocity at time 2.5: " << uniform_trajectory.at(2.5, 1) << endl;
+    cout << "Uniform MINCO position at time 2.5: " << uniform_trajectory.at(2.5, 0).transpose() << endl;
+    cout << "Uniform MINCO velocity at time 2.5: " << uniform_trajectory.at(2.5, 1).transpose() << endl;
 
     // NonUniform MINCO with s = 3, m = 2, N = 4 and T = [1, 2, 2, 1]
     minco::MINCO<3, 2, minco::NonUniform> minco_nonuniform(4);
@@ -74,11 +74,11 @@ int main()
     // get the energy partial derivatives by the coefficients
     cout << "NonUniform MINCO energy partial derivatives: " << endl << minco_nonuniform.getEnergyPartialGradByCoeffs() << endl;
     // get the energy partial derivatives by T
-    cout << "NonUniform MINCO energy partial derivatives by T: " << endl << minco_nonuniform.getEnergyPartialGradByTimes() << endl;
+    cout << "NonUniform MINCO energy partial derivatives by T: " << minco_nonuniform.getEnergyPartialGradByTimes().transpose() << endl;
     // construct the trajectory
     PolynominalTrajectory<2> nonuniform_trajectory(minco_nonuniform.getCoeffs(), Ts);
     // get the position and velocity at time 2.5
-    cout << "NonUniform MINCO position at time 2.5: " << nonuniform_trajectory.at(2.5, 0) << endl;
-    cout << "NonUniform MINCO velocity at time 2.5: " << nonuniform_trajectory.at(2.5, 1) << endl;
+    cout << "NonUniform MINCO position at time 2.5: " << nonuniform_trajectory.at(2.5, 0).transpose() << endl;
+    cout << "NonUniform MINCO velocity at time 2.5: " << nonuniform_trajectory.at(2.5, 1).transpose() << endl;
     return 0;
 }
